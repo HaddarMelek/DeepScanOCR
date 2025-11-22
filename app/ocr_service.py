@@ -2,10 +2,12 @@ from app import create_app
 from flask import request, jsonify
 from app.utils import base64_to_image
 import pytesseract
+from flask_cors import CORS
 
 app = create_app()
+CORS(app)
 
-@app.post("/ocr")
+@app.route("/ocr", methods=["POST"])
 def ocr():
     try:
         data = request.get_json()
